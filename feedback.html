@@ -1,0 +1,188 @@
+<style>
+        .outer-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+
+    .star-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .star {
+        color: gainsboro;
+        font-size: 48px !important;
+        margin: 8px !important;
+        transition: color 0.3s cubic-bezier(0.45, 0, 0.55, 1),
+            transform 0.3s cubic-bezier(0.5, 1, 0.89, 1),
+            filter 0.3s cubic-bezier(0.5, 1, 0.89, 1);
+        filter: drop-shadow(0 4px 3px rgba(0, 0, 0, 0.2));
+    }
+
+    .face {
+        opacity: 0;
+        color: gainsboro;
+        font-size: 128px !important;
+        margin: 16px !important;
+        transition:
+            opacity 0.3s cubic-bezier(0.45, 0, 0.55, 1),
+            transform 0.3s cubic-bezier(0.5, 1, 0.89, 1);
+    }
+
+    .face-container {
+        display: flex;
+        justify-content: center;
+    }
+    .centre{
+        text-align: center;
+        color: rgb(115, 9, 115);
+    }
+</style>
+<h1 class="centre">Feedback</h1>
+<div class="outer-container">
+    <div class="star-container">
+        <i class="fa fa-star star" id="star0"></i>
+        <i class="fa fa-star star" id="star1"></i>
+        <i class="fa fa-star star" id="star2"></i>
+        <i class="fa fa-star star" id="star3"></i>
+        <i class="fa fa-star star" id="star4"></i>
+        <i class="fa fa-star star" id="star5"></i>
+        <i class="fa fa-star star" id="star6"></i>
+        <i class="fa fa-star star" id="star7"></i>
+        <i class="fa fa-star star" id="star8"></i>
+        <i class="fa fa-star star" id="star9"></i>
+    </div>
+    <br>
+    <div class="face-container">
+        <i class="fa fa-frown-o face" style="position: absolute; color: #B71C1C;" id="sadface"></i>
+        <i class="fa fa-meh-o face" style="position: absolute; color: gold;" id="neutralface"></i>
+        <i class="fa fa-smile-o face" style="position: absolute; color: #519E67;" id="happyface"></i>
+        <i class="fa fa-smile-o face"
+            style="opacity: 0; font-size: 0px; margin: 0px; transition: font-size 0.3s cubic-bezier(0.45, 0, 0.55, 1), margin 0.3s cubic-bezier(0.45, 0, 0.55, 1);"
+            id="placeholderFace"></i>
+    </div>
+    <br>
+    <button>
+      <a name="" id="" class="btn btn-primary" href="./feed" role="button">Button</a> 
+    </button>
+</div>
+
+<script>
+    let stars = [],
+    starFocus = [];
+let rating = -1;
+let ignorePointer = false;
+let red = '#B71C1C';
+let yellow = 'gold';
+let green = '#519E67';
+
+for (let i = 0; i < 10; i++) {
+    stars.push(document.getElementById("star" + i));
+    starFocus.push(false);
+}
+
+for (let i = 0; i < stars.length; i++) {
+    document.getElementById("star" + i).onmouseover = function () {
+        for (let j = 0; j <= i; j++) {
+            focusStar(j, i);
+        }
+    };
+    document.getElementById("star" + i).onmouseout = function () {
+        for (let j = 0; j <= i; j++) {
+            if (j >= rating) {
+                unfocusStar(j);
+            }
+        }
+    };
+
+    document.getElementById("star" + i).onclick = function () {
+        if (!ignorePointer) {
+            if (rating == -1) {
+                document.getElementById('placeholderFace').style.fontSize = "128px";
+                document.getElementById('placeholderFace').style.margin = "16px";
+            }
+            ignorePointer = true;
+            staggeredAnimation(i);
+            rating = i + 1;
+
+            setTimeout(() => {
+                ignorePointer = false;
+            }, 1000);
+        }
+    };
+}
+
+function focusFace(face) {
+    document.getElementById(face).style.transform = "scale(1.2)";
+    document.getElementById(face).style.opacity = "1";
+}
+
+function unfocusFace(face) {
+    document.getElementById(face).style.transform = "scale(1)";
+    document.getElementById(face).style.opacity = "0";
+}
+
+function focusStar(j, vote) {
+    if (!starFocus[j]) {
+        document.getElementById("star" + j).style.color = (vote < 6) ? red : ((vote >= 6 && vote < 8) ? yellow : green);
+        document.getElementById("star" + j).style.transform = "scale(1.2)";
+        document.getElementById("star" + j).style.filter = "drop-shadow(0 8px 5px rgba(0, 0, 0, 0.2))";
+        starFocus[j] = true;
+    }
+}
+
+function unfocusStar(j) {
+    if (starFocus[j]) {
+        document.getElementById("star" + j).style.color = "gainsboro";
+        document.getElementById("star" + j).style.transform = "scale(1)";
+        document.getElementById("star" + j).style.filter = "drop-shadow(0 4px 3px rgba(0, 0, 0, 0.2))";
+        starFocus[j] = false;
+    }
+}
+
+function staggeredAnimation(i) {
+    /// UNFOCUS ANIMATION
+    let k = rating;
+    let intervalID2 = setInterval(function () {
+        if (k < i + 1) {
+            clearInterval(intervalID2);
+            if (i < 6) {
+                focusFace("sadface");
+                unfocusFace("neutralface");
+                unfocusFace("happyface");
+            } else if (i >= 6 && i < 8) {
+                focusFace("neutralface");
+                unfocusFace("sadface");
+                unfocusFace("happyface");
+            } else {
+                focusFace("happyface");
+                unfocusFace("sadface");
+                unfocusFace("neutralface");
+            }
+            /// WHEN UNFOCUS ANIMATION FINISHES, PULSE ANIMATION STARTS
+            let j = 0;
+            let intervalID = setInterval(function () {
+                if (j > i) {
+                    clearInterval(intervalID);
+                } else {
+                    pulseEffect(j);
+                    document.getElementById("star" + j).style.color = (i < 6) ? red : ((i >= 6 && i < 8) ? yellow : green);
+                    j++;
+                }
+            }, 100);
+        } else {
+            unfocusStar(k);
+            k--;
+        }
+    }, 100);
+}
+
+function pulseEffect(j) {
+    document.getElementById("star" + j).style.transform = "scale(1.4)";
+    setTimeout(() => {
+        document.getElementById("star" + j).style.transform = "scale(1.2)";
+    }, 200);
+}
+</script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
