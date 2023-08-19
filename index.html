@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<!-- Created By smdevloper -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>www.DigitalDukaan.com</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+<link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
+    />
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  /* box-sizing: border-box; */
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  
+}
+
+
+.wrapper{
+  background: rgb(117, 12, 198);
+  /* position: fixed; */
+  width: 100%;
+  top: 0px;
+  
+}
+.wrapper nav{
+  position: relative;
+  display: flex;
+  max-width: calc(100% - 200px);
+  margin: 0 auto;
+  height: 70px;
+  align-items: center;
+  justify-content: space-between;
+}
+nav .content{
+  display: flex;
+  align-items: center;
+}
+nav .content .links{
+  margin-left: 80px;
+  display: flex;
+}
+.content .logo a{
+  color: #fff;
+  font-size: 30px;
+  font-weight: 600;
+}
+.content .links li{
+  list-style: none;
+  line-height: 70px;
+}
+.content .links li a,
+.content .links li label{
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 9px 17px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+.content .links li label{
+  display: none;
+}
+.content .links li a:hover,
+.content .links li label:hover{
+  background: #323c4e;
+}
+.wrapper .search-icon,
+.wrapper .menu-icon{
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  line-height: 70px;
+  width: 70px;
+  text-align: center;
+}
+.wrapper .menu-icon{
+  display: none;
+}
+.wrapper #show-search:checked ~ .search-icon i::before{
+  content: "\f00d";
+}
+
+.wrapper .search-box{
+  position: absolute;
+  height: 100%;
+  max-width: calc(100% - 50px);
+  width: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+.wrapper #show-search:checked ~ .search-box{
+  opacity: 1;
+  pointer-events: auto;
+}
+.search-box input{
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  font-size: 17px;
+  color: #fff;
+  background: #171c24;
+  padding: 0 100px 0 15px;
+}
+.search-box input::placeholder{
+  color: #f2f2f2;
+}
+.search-box .go-icon{
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  line-height: 60px;
+  width: 70px;
+  background: #171c24;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+}
+.wrapper input[type="checkbox"]{
+  display: none;
+}
+
+/* Dropdown Menu code start */
+.content .links ul{
+  position: absolute;
+  background: #171c24;
+  top: 80px;
+  z-index: 4;
+  opacity: 0;
+  visibility: hidden;
+}
+.content .links li:hover > ul{
+  top: 70px;
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.3s ease;
+}
+.content .links ul li a{
+  display: block;
+  width: 100%;
+  line-height: 30px;
+  border-radius: 0px!important;
+}
+.content .links ul ul{
+  position: absolute;
+  top: 0;
+  right: calc(-100% + 8px);
+}
+.content .links ul li{
+  position: relative;
+}
+.content .links ul li:hover ul{
+  top: 0;
+}
+
+/* Responsive code start */
+@media screen and (max-width: 1250px){
+  .wrapper nav{
+    max-width: 100%;
+    padding: 0 20px;
+  }
+  nav .content .links{
+    margin-left: 30px;
+  }
+  .content .links li a{
+    padding: 8px 13px;
+  }
+  .wrapper .search-box{
+    max-width: calc(100% - 100px);
+  }
+  .wrapper .search-box input{
+    padding: 0 100px 0 15px;
+  }
+}
+
+@media screen and (max-width: 900px){
+  .wrapper .menu-icon{
+    display: block;
+  }
+  .wrapper #show-menu:checked ~ .menu-icon i::before{
+    content: "\f00d";
+  }
+  nav .content .links{
+    display: block;
+    position: fixed;
+    background: #54048a;
+    z-index: 4;
+    height: 100%;
+    width: 100%;
+    top: 70px;
+    left: -100%;
+    margin-left: 0;
+    max-width: 350px;
+    overflow-y: auto;
+    padding-bottom: 100px;
+    transition: all 0.3s ease;
+  }
+  nav #show-menu:checked ~ .content .links{
+    left: 0%;
+  }
+  .content .links li{
+    margin: 15px 20px;
+  }
+  .content .links li a,
+  .content .links li label{
+    line-height: 40px;
+    font-size: 20px;
+    display: block;
+    padding: 8px 18px;
+    cursor: pointer;
+  }
+  .content .links li a.desktop-link{
+    display: none;
+  }
+
+  /* dropdown responsive code start */
+  .content .links ul,
+  .content .links ul ul{
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    background: none;
+    max-height: 0px;
+    overflow: hidden;
+  }
+  .content .links #show-features:checked ~ ul,
+  .content .links #show-services:checked ~ ul,
+  .content .links #show-items:checked ~ ul{
+    max-height: 100vh;
+  }
+  .content .links ul li{
+    margin: 7px 20px;
+  }
+  .content .links ul li a{
+    font-size: 18px;
+    line-height: 30px;
+    border-radius: 5px!important;
+  }
+}
+
+@media screen and (max-width: 400px){
+  .wrapper nav{
+    padding: 0 10px;
+  }
+  .content .logo a{
+    font-size: 27px;
+  }
+  .wrapper .search-box{
+    max-width: calc(100% - 70px);
+  }
+  .wrapper .search-box .go-icon{
+    width: 30px;
+    right: 0;
+  }
+  .wrapper .search-box input{
+    padding-right: 30px;
+  }
+}
+
+.dummy-text{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  z-index: -1;
+  padding: 0 20px;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+.dummy-text h2{
+    color: #005eff;
+  font-size: 45px;
+  margin: 5px 0;
+}
+.search{
+    border-radius: 15px;
+    background-color: white;
+    position: relative;
+    left: -11px;
+    width: 300px;
+    color: black;
+    font-size: 1.2rem;
+
+}
+#icon{
+    position: relative;
+    left: 347px;
+
+
+
+
+}
+#logo{
+    height: 57px;
+   position: relative;
+   right: .5cm;
+    
+   
+
+
+    
+}
+#a1{
+    position: relative;
+    left: 12px;
+    top: 0px;
+    font-size: 20px;
+    text-decoration: none;
+  
+
+    color: white
+
+}
+#login{
+    color: black;
+}
+        .back {
+            height: 800px;
+            width: 100%;
+            background: url("bgimg.jpg") no-repeat center center/cover;
+        }
+
+        .tag1 {
+            position: absolute;
+            right: 50px;
+            margin-top: 100px;
+            font-size: 5rem;
+        }
+
+        .tag2 {
+            position: absolute;
+            right: 50px;
+            margin-top: 200px;
+            font-size: 5rem;
+        }
+
+        .button {
+            position:absolute;
+            right: 70px;
+            border: none;
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 2rem;
+            margin-top: 330px;
+            cursor: pointer;
+            background-color: blueviolet;
+        }
+        #im{
+          background-image: url('bgimg.jpg');
+          background-size: 100%;
+          background-repeat: no-repeat;
+          
+        }
+        #navbelow{
+            position: relative;
+            /* top: 2cm; */
+   
+   height: 3cm;
+}
+
+.navimage{
+   
+   width: 20%;
+   height: 3cm;
+   float: left;
+   text-align: center;
+   
+}
+#div5{
+   text-align: center;
+   float: left;
+   width: 18%;
+}
+#topoffer{
+   text-decoration: none;
+   color: black;
+   text-align: center;
+}
+#topofferimg{
+   height: 2cm;
+   width: 2cm;
+}
+#SmartphonesandTablet{
+   text-decoration: none;
+   color: black;
+   text-align: center;
+}
+#SmartphonesandTabletimg{
+   height: 2cm;
+   width: 2cm;
+}
+#furniture{
+   text-decoration: none;
+   color: black;
+   text-align: center;
+}
+#furnitureimg{
+   height: 2cm;
+   width: 2cm;
+}
+#electronics{
+   text-decoration: none;
+   color: black;
+   text-align: center;
+   
+  
+}
+#electronicsimg{
+   height: 2cm;
+   width: 2cm;
+}
+#tvappliances{
+   text-decoration: none;
+   color: black;
+   text-align: center;
+}
+#tvappliancesimg{
+   height: 2cm;
+   width: 2cm;
+   
+}
+#maindiv1{
+   height: 7cm;
+   background-color: black;
+   color: white;
+   position: relative;
+   /* top: 2cm; */
+}
+#maindiv1img{
+   height:6cm;
+   width:10cm ;
+   position: relative;
+   left: 5cm;
+   }
+#iphonecontent{
+   
+   height: 5cm;
+   width: 10cm;
+   color: white;
+   position: relative;
+   bottom: 4.5cm;
+   left: 18cm;
+   
+}   
+#last{
+   
+    background-color: black;
+    color: white;
+    
+  
+    width: 100%;
+}
+
+
+.Contact{
+    color: rgb(117, 12, 198);
+     margin-bottom: .5cm;
+     margin-top: 1cm;
+    font-size: .6cm;
+   
+}
+.cont{
+    height: .4cm;
+    width: .4cm;
+}
+a.desktop-link{
+  position: relative;
+  z-index: 4;
+}
+.foot{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: black;
+  width: 100%;
+}
+a{
+  position: relative;
+  top: 12px;
+}
+#foot{
+            background-color: rgb(117, 12, 198);
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            left: 0;
+            height: .5cm;
+            color: white;
+            font-size: small;
+        }
+  .input-box input {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  font-weight: 400;
+  color: #333;
+  padding: 0 15px;
+  border: none;
+  border-radius: 6px;
+  outline: none;
+  transition: all 0.5s ease-in-out;
+}
+.input-box.open input {
+  padding: 0 15px 0 65px;
+}
+
+.input-box .search {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.input-box.open .search {
+  border-radius: 6px 0 0 6px;
+}
+.search .search-icon {
+  font-size: 30px;
+  color: #1c1c1c;
+}
+.input-box .close-icon {
+  position: absolute;
+  top: 50%;
+  right: -45px;
+  font-size: 30px;
+  color: #1c1c1c;
+  padding: 5px;
+  transform: translateY(-50%);
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+  pointer-events: none;
+  opacity: 0;
+}
+.input-box.open .close-icon {
+  transform: translateY(-50%) rotate(180deg);
+  pointer-events: auto;
+  opacity: 1;
+}
+
+
+</style>
+<body>
+  <div id="im">
+  <div class="wrapper">
+    
+    <nav> 
+        <img id="logo"  src="https://play-lh.googleusercontent.com/jVq3nAGpN5oG6dfYYaecjQc62g25lIUGwle1U0RZjHGZW-regXaKAg4FFNLdexO-MwA=w240-h480-rw" alt="">
+
+     <input type="checkbox" id="show-search">
+      <input type="checkbox" id="show-menu">
+      <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
+      <div class="content">
+      <div class="logo"><a id="a1" href="#">Digital Dukaan</a>
+       
+     
+    </div>
+        <ul class="links">
+          
+          <li><a href="/login"  style="text-decoration: none;">Login</a></li>
+          <li><a href="./home"  style="text-decoration: none;">Home</a></li>
+          <li><a href="./about" style="text-decoration: none;">About</a></li>
+          <li>
+            <a href="#" class="desktop-link" style="text-decoration: none;">Features</a>
+            <input type="checkbox" id="show-features">
+            <label for="show-features">Features</label>
+            <ul>
+              <li><a href="#">Drop Menu 1</a></li>
+              <li><a href="#">Drop Menu 2</a></li>
+              <li><a href="#">Drop Menu 3</a></li>
+              <li><a href="#">Drop Menu 4</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" class="desktop-link" style="text-decoration: none;">Services</a>
+            <input type="checkbox" id="show-services">
+            <label for="show-services">Services</label>
+            <ul>
+              <li><a href="#">Drop Menu 1</a></li>
+              <li><a href="#">Drop Menu 2</a></li>
+              <li><a href="#">Drop Menu 3</a></li>
+              <li>
+                <a href="#" class="desktop-link" style="text-decoration: none;">More Items</a>
+                <input type="checkbox" id="show-items">
+                <label for="show-items">More Items</label>
+                <ul>
+                  <li><a href="#">Sub Menu 1</a></li>
+                  <li><a href="#">Sub Menu 2</a></li>
+                  <li><a href="#">Sub Menu 3</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a href="./feedback" style="text-decoration: none;">Feedback</a></li>
+          
+        </ul>
+      </div>
+      <div class="input-box">
+      <input type="text" placeholder="Search..." />
+     
+      <i class="uil uil-times close-icon"></i>
+    </div>
+      
+        
+
+      </form>
+
+      
+      
+      
+    </nav>
+  </div>
+
+  
+    
+        
+    
+    </div>
+    <div id="navbelow">
+        <div class="navimage" id="div1"> <a id="topoffer" href="./phone"><img id="topofferimg" src="https://rukminim2.flixcart.com/fk-p-flap/128/128/image/4344fd3c296d233a.png?q=100" alt=""> <br>Top Offer</a></div>
+        <div class="navimage" id="div2"> <a id="SmartphonesandTablet" href="./phone"><img id="SmartphonesandTabletimg" src="https://rukminim2.flixcart.com/fk-p-flap/128/128/image/ab4eb7c9d2f6c4df.png?q=100" alt=""> <br>Smartphones and Tablet</a></div>
+        <div class="navimage" id="div3">
+            <a id="electronics" href="./laptop"><img id="electronicsimg" src="https://rukminim2.flixcart.com/fk-p-flap/128/128/image/a1e3b4c041823d12.png?q=100" alt=""> <br>Electronics</a>
+        </div>
+        <div class="navimage" id="div4">
+            <a id="furniture" href="./furniture"><img id="furnitureimg" src="https://rukminim2.flixcart.com/fk-p-flap/128/128/image/296bda61dc97f8d7.png?q=100" alt=""> <br>Furniture</a>
+        </div>
+       
+        <div id="div5"  >
+            <a id="tvappliances" href="./tv"><img id="tvappliancesimg" src="https://rukminim2.flixcart.com/fk-p-flap/128/128/image/5fdd40bb1b4f1ab9.png?q=100" alt=""> <br>Tv & Appliances </a>
+        </div>
+        
+    </div>
+    
+    
+    <div id="maindiv1">
+        <img id="maindiv1img" src="https://i.ytimg.com/vi/FT3ODSg1GFE/maxresdefault.jpg" alt="">
+       <!-- <span style="height: 2cm;  position: relative; bottom: 4cm;; left: 6cm; font-size: .5cm;"> Special Offer Starting at $150 EMI</span> -->
+       <div id="iphonecontent">
+        <div style="text-align: center; font-size: 1cm;"><i>Special Offer </i> <img style="height: 1cm; width: 1cm; position: relative; top: .2cm;" src="data:image/png;base64,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" alt=""> </div>
+        <div style="font-size: .5cm; text-align: center; margin-top: 1cm; ">Iphone 14 Pro Starting at $150/month EMI</div>
+       </div>
+    </div>
+    <div style="background-image: url(https://images.pexels.com/photos/6347888/pexels-photo-6347888.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260); height: 10cm; background-position: center;">
+      <img style=" width: 25%; position: relative ; right: 4cm; float: right; top: 5cm;" src="https://companieslogo.com/img/orig/MONTECARLO.NS_BIG-8217e48d.png?t=1684302482" alt="" class="monte">
+    </div>
+
+
+    <div style=" position: relative; top: 12px; background-size: 100% 100%; background-image: url(https://www.whirlpoolcorp.com/wp-content/uploads/Whirlpool-named-to-worlds-most-admired-companies-fortune-magazine.jpg); height: 14cm; background-position: top;">
+      <img style=" width: 25%; position: relative ; right: 4cm; float: right; top: 5cm;" src="" alt="" >
+    </div>
+
+
+    <div style=" margin-top: .7cm;  background-image: url(https://d2xamzlzrdbdbn.cloudfront.net/products/b6cbbd66-4b6a-485b-bc2e-1349e8af9ae1.jpg); height: 10cm; background-position: center;">
+      <img style=" width: 25%; position: relative ; right: 5cm; float: right; top: 3.5cm;" src="https://seeklogo.com/images/S/sansui-logo-72F182F744-seeklogo.com.png" alt="" >
+    </div>
+   
+    <footer>
+      <div id="foot"> &#169;  www.DigitalDukaan.com</div>
+  </footer>
+  <script>
+    // ---- ---- Const ---- ---- //
+let inputBox = document.querySelector('.input-box'),
+  searchIcon = document.querySelector('.search'),
+  closeIcon = document.querySelector('.close-icon');
+
+// ---- ---- Open Input ---- ---- //
+searchIcon.addEventListener('click', () => {
+  inputBox.classList.add('open');
+});
+// ---- ---- Close Input ---- ---- //
+closeIcon.addEventListener('click', () => {
+  inputBox.classList.remove('open');
+});
+
+  </script>
+    
+</body>
+</html>
